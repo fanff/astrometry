@@ -1,21 +1,17 @@
 from setuptools import setup
+
 setup(
-    name='astrometry',
-    version='0.1.2',
-    author='Lukas Wenzl',
+    name='astrometry-np',
+    version='0.0.1',
+    author='Fanf',
     description='Simple python3 tool to quickly correct the rough astronometry given by a telescope for a fits image.',
-    entry_points={
-        'console_scripts': [
-            'astrometry=astrometry:main',
-            'photometry=photometry:main'
-        ]
-    },
-    install_requires = [ 'astroquery',
-   'astropy',
-   'photutils',
-   'matplotlib',
-   'pandas',
-   'numpy',
-   'scipy'
-   ]
+    entry_points={},
+    install_requires=['astroquery',
+                      'astropy',
+                      'photutils',
+                      'matplotlib',
+                      'pandas',
+                      'numpy',
+                      'scipy'
+                      ]
 )

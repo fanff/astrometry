@@ -1,0 +1,7 @@
+pandas
+astroquery
+Astropy
+scipy
+Pillow
+matplotlib
+photutils

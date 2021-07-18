@@ -1,26 +1,12 @@
-"""This aims to do very fast and simple astrometric calibration of images.
-
-Author Lukas Wenzl
-written in python 3
-
-"""
-
-
-
-#
-#
-#Author Lukas Wenzl
-#written in python 3
-
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-# from sklearn.externals import joblib ##load pkl (pickle) file
-#
+
+
+
+# import matplotlib.pyplot as plt
+
 from datetime import datetime
-#
-# #for parsing the arguments for the file
-from argparse import ArgumentParser
+
 
 import get_catalog_data as query
 import get_transformation as register
@@ -53,7 +39,9 @@ pso200m10_i_astro.fits -ra 200.38292412 -dec 10.30514953 -b i
 
 photometry r_eduardo_3_pisco_J_astro.fits -b J -name eduardo_3
 """
+import logging
 
+log=logging.getLogger(__name__)
 
 
 def find_sources(image, aperture):
@@ -76,11 +64,10 @@ def find_sources(image, aperture):
     #find sources
     #bkg_sigma = mad_std(image)
     mean, median, std = sigma_clipped_stats(image, sigma=3.0)
-    #sigma = np.std(image)
-    #print(bkg_sigma)
-    #print(std)
+    log.info("sigma_clipped_stat mean, median, std : %s,%s,%s",mean, median, std )
     daofind = DAOStarFinder(fwhm=4., threshold=5.*std, brightest=200)
     sources = daofind(image)
+
     for col in sources.colnames:
         sources[col].info.format = '%.8g'  # for consistent table output
     #print(sources)
